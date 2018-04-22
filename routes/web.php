@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
+
+Route::get('/wishlist/{user}', 'WishlistController@show');
+
+Route::post('/wishlist/{product}', 'WishlistController@store')->name('product-whislist');
+
+Route::post('/wishlist/delete/{product}', 'WishlistController@destroy')->name('product-whislist-delete');
+
+Route::get('/', 'HomeController@index')->name('home');

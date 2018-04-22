@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,600");
 
 // Variables
 @import "variables";
@@ -11,4 +11,40 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: $white;
+
+	&:after {
+	  content: '';
+	  display: block;
+	  padding-top: 100%;
+	}
+
+	img {
+	  width: auto;
+	  height: 100%;
+	  max-width: none;
+	  position: absolute;
+	  left: 50%;
+	  top: 0;
+	  transform: translateX(-50%);
+	  padding: 1rem;
+	}
+
+}
+
+.card{
+	.card-title{
+		min-height: 6.5rem;
+	}
+}
+
+footer {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	background-color: $white;
 }

@@ -1,4 +1,12 @@
 <?php
+/**
+ *  User Model.
+ *
+ * @author     German Gonzalez Rodriguez <ger@gergonzalez.com>
+ * @copyright  German Gonzalez Rodriguez
+ *
+ * @version    1.0
+ */
 
 namespace App;
 
@@ -26,4 +34,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the user related wishlist
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function wishlist()
+    {
+        return $this->hasOne(Wishlist::class);
+    }
+
+    /**
+     * Get the user related products thorugh the wishlist
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function products()
+    {
+        return $this->wishlist()->first()->products();
+    }
+
 }
