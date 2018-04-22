@@ -13,12 +13,14 @@
 
 Auth::routes();
 
-Route::get('/wishlist', 'WishlistController@index')->name('wishlist')->middleware('auth');;
+Route::get('/wishlists/{wishlist}', 'WishlistController@show')->name('show-wishlist');
 
-Route::get('/wishlist/{wishlist}', 'WishlistController@show')->name('show-wishlist');
+Route::get('/wishlists', 'WishlistController@index')->name('wishlist')->middleware('auth');
 
-Route::post('/wishlist/{product}', 'WishlistController@store')->name('product-whislist');
+Route::post('/wishlists/{product}', 'WishlistController@store')->name('product-whislist')->middleware('auth');
 
-Route::post('/wishlist/delete/{product}', 'WishlistController@destroy')->name('product-whislist-delete');
+Route::post('/wishlists/delete/{product}', 'WishlistController@destroy')->name('product-whislist-delete')->middleware('auth');
+
+Route::get('/products/sync', 'ProductController@sync');
 
 Route::get('/', 'HomeController@index')->name('home');

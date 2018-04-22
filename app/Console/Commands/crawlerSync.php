@@ -15,21 +15,21 @@ use Illuminate\Console\Command;
 
 use CrawlerHelper;
 
-class crawler extends Command
+class crawlerSync extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'crawler:scrape';
+    protected $signature = 'crawler:sync';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'appliancesdelivered.ie web crawler';
+    protected $description = 'appliancesdelivered.ie web crawler db sync';
 
     /**
      * Create a new command instance.
@@ -56,6 +56,16 @@ class crawler extends Command
 
         $data = CrawlerHelper::getProducts($links, $this);
 
-        $this->info(var_dump($data));
+        foreach ($data as $product) {
+            $updatedProduct = \App\Product::firstOrNew(['name' => $product['name']]);
+            $updatedProduct->img = $product['img'];
+            $updatedProduct->url = $product['url'];
+            $updatedProduct->price = $product['price'];
+            $updatedProduct->save();
+        }
+
+        return;
+
+
     }
 }
