@@ -34,7 +34,7 @@
         <h3 class="pt-8 pb-8">{{__('The wishlist is empty')}}</h3>
     @endif    
     <div class="row justify-content-center mt-4 mb-2">
-        <a href="/" class="btn btn-lg btn-secondary">{{__('Add more products to your wishlist')}}</a>
+        <a href="{{session()->has('previous')?session('previous'):'/'}}" class="btn btn-lg btn-secondary">{{__('Add more products to your wishlist')}}</a>
     </div>
     <div class="row justify-content-center mt-4 mb-4">
         {{ $products->appends(request()->input())->links() }}

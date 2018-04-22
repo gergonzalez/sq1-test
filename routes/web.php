@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/wishlists/{wishlist}', 'WishlistController@show')->name('show-wishlist');
 
-Route::get('/wishlists', 'WishlistController@index')->name('wishlist')->middleware('auth');
+Route::get('/wishlists', 'WishlistController@index')->name('show-mywishlist')->middleware('auth');
 
 Route::post('/wishlists/{product}', 'WishlistController@store')->name('product-whislist')->middleware('auth');
 

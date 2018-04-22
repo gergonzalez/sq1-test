@@ -54,7 +54,7 @@ class WishlistController extends Controller
         //Store previous url to come back
         $request->session()->put('previous', url()->previous() );
 
-        return redirect('wishlist')->with('status', __('Product :name added to your wishlist',['name'=> $product->name]));
+        return redirect('wishlists')->with('status', __('Product :name added to your wishlist',['name'=> $product->name]));
     }
 
     /**
@@ -68,7 +68,7 @@ class WishlistController extends Controller
     public function show(Request $request, Wishlist $wishlist)
     {
         if(Auth::check() && Auth::user()->id === $wishlist->user_id){
-            return redirect('wishlist');
+            return redirect('wishlists');
         }
 
         $products = $wishlist->products();
