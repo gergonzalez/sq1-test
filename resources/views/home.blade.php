@@ -6,7 +6,12 @@
         <div class="col-lg-12">
             @include ('components.products-nav')
         </div>
-    </div>    
+    </div>
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="row">
         @foreach ($products as $product)
         <div class="col-xs-12 col-md-6 col-lg-3 mb-3">

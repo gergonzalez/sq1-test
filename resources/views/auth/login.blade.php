@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container">
+<div class="container pt-8 pb-8">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        <p class="text-center">{{__('Log in to start adding products to wishlist or register if you don\'t have an account already')}}</p>
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

@@ -2,5 +2,5 @@
     <p class="float-right">
         <a href="#">Back to top</a>
     </p>
-    <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
+    <p>This test was implemented by German Gonzalez Rodriguez. 2018</p>
 </div>

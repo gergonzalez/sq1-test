@@ -12,9 +12,15 @@
     @auth
 
         @if( isset($alreadyWishlist) && in_array( $product->id, $alreadyWishlist ) )
-            <button type="button" class="btn btn-success btn-block" disabled>{{ __('Already in your wishlist') }}</button>
-{{--             <button type="button" class="btn btn-danger btn-block" disabled>{{ __('Remove from your list') }}</button>
- --}}        @else
+            <action-button url="{{ route('product-whislist-delete', ['product' => $product->id ]) }}"
+                token="{{ csrf_token() }}" idle="{{__('Already in your wishlist')}}" hover="{{__('Remove from your list')}}"
+                ></action-button>
+        @elseif( request()->is('wishlist') )
+            <form action="{{ route('product-whislist-delete', ['product' => $product->id ]) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger btn-block">{{__('Remove from your list')}}</button>
+            </form>
+        @else
             <form action="{{ route('product-whislist', ['product' => $product->id ]) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary btn-block">{{ __('Add to my wishlist') }}</button>
@@ -22,7 +28,7 @@
         @endif
 
     @else
-        <a href="{{ route('login') }}" class="btn btn-info btn-block" disabled>{{ __('Login to add') }}</a>
+        <a href="{{ route('login') }}" class="btn btn-info btn-block" disabled>{{ __('Login to start adding') }}</a>
     @endauth
 
   </div>
