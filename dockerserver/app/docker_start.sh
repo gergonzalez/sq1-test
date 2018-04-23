@@ -12,6 +12,8 @@ chown -R www-data:www-data /app
 #chown -R mysql:adm /var/log/mysql
 #chown -R root:adm /var/log/apache2
 
+first=false
+
 # Initialize empty data volume and create MySQL user
 # Reference 1: https://github.com/tutumcloud/mysql/blob/master/5.5/run.sh
 # Reference 2: http://stackoverflow.com/questions/20456666/bash-checking-if-folder-has-contents
@@ -29,6 +31,7 @@ else
     #Root User
     echo "CREATE USER 'root'@'%' IDENTIFIED BY 'secret'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;FLUSH PRIVILEGES;" | mysql -u root
     echo "=> Done!"
+    first=true
 fi
 
 service mysql start
@@ -39,9 +42,9 @@ service apache2 status
 
 service redis-server start
 
-if [ -f /var/www/deploy.sh ] ; then
-	chmod +x /var/www/deploy.sh
-	/var/www/deploy.sh
+if $first && [ -f /var/www/deploy.sh ]; then
+    chmod +x /var/www/deploy.sh
+    /var/www/deploy.sh
 fi
 
 mkdir /var/log/supervisor
