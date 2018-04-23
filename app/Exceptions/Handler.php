@@ -46,7 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return response()->view('errors.custom');
-        //     return parent::render($request, $e);
+        if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+            return response()->view('errors.custom', [], 500);
+        }
+
+        return parent::render($request, $exception);
     }
 }
