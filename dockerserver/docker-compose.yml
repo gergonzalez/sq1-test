@@ -1,0 +1,24 @@
+# DEV environment, one image contains everything
+version: '3'
+services:
+    server:
+        build:
+            context: .
+            args:
+              - PASSWORD=pass
+            dockerfile: "Dockerfile"
+
+        container_name: "homestead"
+        hostname: homestead
+        image: homestead
+        entrypoint: /app/docker_start.sh
+        ports:
+          - "8088:80"
+          - "2022:22"
+          - "33060:3306"
+        volumes:
+          - ../:/var/www
+          - ./app:/app
+          - ./volumes/mysql:/var/lib/mysql
+          - ./volumes/var_log/mysql:/var/log/mysql
+          - ./volumes/var_log/apache2:/var/log/apache2
