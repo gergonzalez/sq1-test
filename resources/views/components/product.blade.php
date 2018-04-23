@@ -15,7 +15,7 @@
             <action-button url="{{ route('product-whislist-delete', ['product' => $product->id ]) }}"
                 token="{{ csrf_token() }}" idle="{{__('Already in your wishlist')}}" hover="{{__('Remove from your list')}}"
                 ></action-button>
-        @elseif( request()->is('wishlist') )
+        @elseif( request()->is('wishlists') )
             <form action="{{ route('product-whislist-delete', ['product' => $product->id ]) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-danger btn-block">{{__('Remove from your list')}}</button>
