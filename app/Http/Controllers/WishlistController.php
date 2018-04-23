@@ -1,6 +1,6 @@
 <?php
 /**
- * Manage requests to '/wishlist/*'.
+ * Manage requests to '/wishlists/*'.
  *
  * @author     German Gonzalez Rodriguez <ger@gergonzalez.com>
  * @copyright  German Gonzalez Rodriguez

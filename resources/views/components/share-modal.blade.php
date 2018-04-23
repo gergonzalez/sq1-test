@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <p>{{__('Copy and share this link with yur friends:')}}</p>
-        <p><strong>{{url('/').'/wishlist/'.Auth::user()->wishlist->id}}</strong></p>
+        <p><strong>{{url('/').'/wishlists/'.Auth::user()->wishlist->id}}</strong></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
